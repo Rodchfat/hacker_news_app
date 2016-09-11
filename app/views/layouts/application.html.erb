@@ -8,7 +8,15 @@
 </head>
 <body>
 <p class="notice"><%= notice %></p>
-<p class="alert"><%= alert %></p>
+<% if user_signed_in? %>
+<%= link_to "Submit Link", new_link_path %>
+<%= link_to "Account", edit_user_registration_path %>
+<%= link_to "Sign Out", destroy_user_session_path, method: :delete, data: {confirm: "Are you sure you want to delete This"} %>
+<% end %>
+<% if !user_signed_in? %>
+<%= link_to "Sign In", user_session_path %>
+<% end %>
+
 <%= yield %>
 
 </body>
