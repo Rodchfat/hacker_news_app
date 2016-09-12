@@ -2,7 +2,7 @@
 
 <h1>Listing Links</h1>
 
-<table>
+<table class="table-striped">
   <thead>
     <tr>
       <th>Title</th>
@@ -14,12 +14,22 @@
   <tbody>
     <% @links.each do |link| %>
       <tr>
-        <td><%= link.title %></td>
-        <td><%= link.url %></td>
-        <td><%= link_to 'Show', link %></td>
+        <td id= "td-width"><%= link.title %></td>
+        <td id= "td-width"><%= link.url %></td>
+        <td id= "td-width"><%= link_to like_link_path(link), method: :put, class: "btn btn-success btn-xs" do %>
+        <span class="glyphicon glyphicon-chevron-up"></span>
+        Upvote
+        <%= link.get_upvotes.size %></td>
+        <% end %></br>
+        <td id= "td-width"><%= link_to dislike_link_path(link), method: :put, class: "btn btn-danger btn-xs" do %>
+        <span class="glyphicon glyphicon-chevron-up"></span>
+        Downvote
+        <%= link.get_downvotes.size %></td>
+        <% end %></br>
+        <td id= "td-width"><%= link_to 'Show', link %></td>
         <% if link.user == current_user %>
-        <td><%= link_to 'Edit', edit_link_path(link) %></td>
-        <td><%= link_to 'Destroy', link, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td id= "td-width"><%= link_to 'Edit', edit_link_path(link) %></td>
+        <td id= "td-width"><%= link_to 'Destroy', link, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <% end %>
       </tr>
     <% end %>
