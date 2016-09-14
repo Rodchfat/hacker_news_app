@@ -10,5 +10,26 @@
   <%= @link.url %>
 </p>
 
+<%= link_to like_link_path(@link), method: :put, class: "btn btn-success btn-xs" do %>
+<span class="glyphicon glyphicon-chevron-up"></span>
+Upvote
+<%= @link.get_upvotes.size %>
+<% end %></br>
+<%= link_to dislike_link_path(@link), method: :put, class: "btn btn-danger btn-xs" do %>
+<span class="glyphicon glyphicon-chevron-up"></span>
+Downvote
+<%= @link.get_downvotes.size %>
+<% end %></br>
+<p>
+  <p>
+    <%= @link.comments.count %> Comments
+  </p>
+  <% @link.comments.each do |comment| %>
+<%= comment.body %></br>
+<% end %>
+</p>
+<%= render 'comment' %>
+
+
 <%= link_to 'Edit', edit_link_path(@link) %> |
 <%= link_to 'Back', links_path %>
